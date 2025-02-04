@@ -1,4 +1,4 @@
-import { WorkData } from "../interfaces/WorkData";
+import { WorkData } from "../interfaces/BookData";
 import { ApiMessage } from "../interfaces/ApiMessage";
 
 const retrieveWorks = async () => {

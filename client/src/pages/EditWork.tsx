@@ -1,6 +1,6 @@
 import { useState, useEffect, FormEvent, ChangeEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { WorkData } from "../interfaces/WorkData";
+import { WorkData } from "../interfaces/BookData";
 import { retrieveWork, updateWork } from "../api/workAPI";
 
 const EditWork = () => {

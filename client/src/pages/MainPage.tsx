@@ -1,6 +1,6 @@
 import { useState, useEffect, MouseEventHandler } from "react";
 import { Link } from "react-router-dom";
-import { WorkData } from "../interfaces/WorkData";
+import { WorkData } from "../interfaces/BookData";
 import { deleteWork, retrieveWorks } from "../api/workAPI";
 
 const MainPage = () => {
