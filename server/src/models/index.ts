@@ -1,11 +1,6 @@
 import sequelize from '../config/connection.js';
-import { VolunteerFactory } from './volunteer.js';
-import { WorkFactory } from './work.js';
+import { BookFactory } from './book.js';
 
-    const Volunteer = VolunteerFactory(sequelize);
-    const Work = WorkFactory(sequelize);
+    const Book = BookFactory(sequelize);
 
-    Volunteer.hasMany(Work, { foreignKey: 'assignedVolunteerId'});
-    Work.belongsTo(Volunteer, { foreignKey: 'assignedVolunteerId', as: 'assignedVolunteer'});
-
-export { Volunteer, Work };
+export { Book };

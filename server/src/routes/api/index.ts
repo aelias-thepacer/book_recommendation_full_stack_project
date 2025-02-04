@@ -1,10 +1,7 @@
 import { Router } from 'express';
-import { volunteerRouter } from './volunteer-routes.js';
-import { workRouter } from './work-volunteer.js';
+import { bookRouter } from './book-routes.js';
 
 const router = Router();
 
-router.use('/volunteers', volunteerRouter);
-router.use('/works', workRouter);
-
+router.use('/books', bookRouter);
 export default router;

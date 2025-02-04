@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import {ApiMessage } from '../interfaces/ApiMessage'
+import { ApiMessage } from '../interfaces/ApiMessage'
 import { MouseEventHandler } from "react";
 
 interface VolunteerCardProps {
