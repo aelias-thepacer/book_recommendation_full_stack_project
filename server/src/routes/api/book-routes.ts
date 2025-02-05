@@ -5,11 +5,19 @@ import { Book } from '../../models/book.js';
 const router = express.Router();
 
 // GET searched books from Google Books API
-router.get('/search', async (req: Request, res: Response) => {
-  const { query } = req.query;
+router.get('/search/:params', async (req: Request, res: Response) => {
+  
+  const query = req.params.params;
+
+  console.log(query);
+
   try {
-    const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
-    res.json(response);
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`)
+    .then((res) => res.json())
+    .then((data) => {
+      res.status(200).json(data);
+      return data.items;
+    });
   } catch (error: any) {
     res.status(500).json({
       message: error.message
