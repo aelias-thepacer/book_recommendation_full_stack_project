@@ -1,6 +1,6 @@
 import { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { updateVolunteers, retrieveVolunteer } from '../api/volunteerAPI';
+import { updateVolunteers, retrieveVolunteer } from '../api/bookAPI';
 import { VolunteerData } from '../interfaces/VolunteerData';
 
 const EditVolunteer = () => {

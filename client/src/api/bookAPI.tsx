@@ -1,9 +1,9 @@
 import { ApiMessage } from "../interfaces/ApiMessage";
-import { VolunteerData } from "../interfaces/VolunteerData";
+import { BookData } from "../interfaces/BookData";
 
-const retrieveVolunteers = async () => {
+const retrieveBooks = async () => {
   try {
-    const response = await fetch('/api/volunteers', {
+    const response = await fetch('/api/Books', {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -11,7 +11,7 @@ const retrieveVolunteers = async () => {
     const data = await response.json();
 
     if(!response.ok) {
-      throw new Error('invalid volunteer API response, check network tab!');
+      throw new Error('invalid Book API response, check network tab!');
     }
 
     return data;
@@ -21,29 +21,29 @@ const retrieveVolunteers = async () => {
   }  
 };
 
-const retrieveVolunteer = async (id: number | null): Promise<VolunteerData> => {
+const retrieveBook = async (id: number | null): Promise<BookData> => {
   try {
-    const response = await fetch(`/api/volunteers/${id}`, {
+    const response = await fetch(`/api/Books/${id}`, {
       headers: {
         'Content-Type': 'application/json',
       }
     });
     const data = await response.json();
     if(!response.ok) {
-      throw new Error('invalid volunteer API response, check network tab!');
+      throw new Error('invalid Book API response, check network tab!');
     }
 
     return data;
   } catch (err) {
     console.log('Error from data retrieval:', err);
-    return Promise.reject('Could not fetch volunteer');
+    return Promise.reject('Could not fetch Book');
   }
 };
 
-const createVolunteer = async (body: VolunteerData): Promise<VolunteerData> => {
+const createBook = async (body: BookData): Promise<BookData> => {
   try {
     const response = await fetch(
-      '/api/volunteers/', {
+      '/api/Books/', {
         method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -61,15 +61,15 @@ const createVolunteer = async (body: VolunteerData): Promise<VolunteerData> => {
     return data;
 
   } catch (err) {
-    console.log('Error from Volunteer Creation: ', err);
-    return Promise.reject('Could not create Volunteer');
+    console.log('Error from Book Creation: ', err);
+    return Promise.reject('Could not create Book');
   }
 };
 
-const updateVolunteers = async (id: number, body: VolunteerData): Promise<VolunteerData> => {
+const updateBooks = async (id: number, body: BookData): Promise<BookData> => {
   try {
     const response = await fetch(
-      `/api/volunteers/${id}`, {
+      `/api/Books/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -90,10 +90,10 @@ const updateVolunteers = async (id: number, body: VolunteerData): Promise<Volunt
   }
 };
 
-const deleteVolunteer = async (id: number): Promise<ApiMessage> => {
+const deleteBook = async (id: number): Promise<ApiMessage> => {
   try {
     const response = await fetch(
-      `/api/volunteers/${id}`, {
+      `/api/Books/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -108,9 +108,27 @@ const deleteVolunteer = async (id: number): Promise<ApiMessage> => {
 
     return data;
   } catch (err) {
-    console.error('Error in deleting volunteer', err);
-    return Promise.reject('Could not delete volunteer');
+    console.error('Error in deleting Book', err);
+    return Promise.reject('Could not delete Book');
   }
 };
 
-export { retrieveVolunteer, retrieveVolunteers, createVolunteer, updateVolunteers, deleteVolunteer };
+const searchBooks = async (search: string): Promise<BookData[]> => {
+  try {
+    const response = await fetch(`/api/Books/search/${search}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    const data = await response.json();
+    if(!response.ok) {
+      throw new Error('invalid Book API response, check network tab!');
+    }
+    return data.items;
+  } catch (err) {
+    console.log('Error from data retrieval:', err);
+    return [];
+  }
+}
+
+export { retrieveBook, retrieveBooks, createBook, updateBooks, deleteBook, searchBooks };

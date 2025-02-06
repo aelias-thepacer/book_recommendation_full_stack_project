@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { VolunteerData } from "../interfaces/VolunteerData";
-import { retrieveVolunteers, deleteVolunteer } from "../api/volunteerAPI";
+import { retrieveVolunteers, deleteVolunteer } from "../api/bookAPI";
 import VolunteerCard from "../components/VolunteerCard";
 import { Link } from "react-router-dom";
 import { ApiMessage } from "../interfaces/ApiMessage";
