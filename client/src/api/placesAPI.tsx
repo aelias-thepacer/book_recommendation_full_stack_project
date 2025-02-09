@@ -14,7 +14,7 @@ const lng = -122.4194; // Example longitude
 console.log(lng);
 const radius = 1500; // Example radius in meters
 const type = 'restaurant'; // Example place type
-const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY; // Use environment variable for API key
+const apiKey = 'AIzaSyAuw3y8Feor-ZLpY2zyY26jxhR_arjqXtA'; // Use environment variable for API key
 
 
 if (!apiKey) {
