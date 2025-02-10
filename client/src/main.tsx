@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 
-// import App from './App.tsx';
+import App from './App.tsx';
 // import ErrorPage from './pages/ErrorPage.tsx';
 // import MainPage from './pages/MainPage.tsx';
 // import VolunteerPage from './pages/VolunteerPage.tsx';
@@ -12,9 +12,9 @@ import './index.css'
 
 
 const router = createBrowserRouter([
-  // {
-  //   path: '/',
-  //   element: <App />,
+   {
+    path: '/',
+    element: <App />,
   //   errorElement: <ErrorPage />,
   //   children: [
   //     {
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
   //       element: <EditWork />
   //     }
   //   ]
-  // }
+   }
 ]);
 
 const rootElement = document.getElementById('root');
