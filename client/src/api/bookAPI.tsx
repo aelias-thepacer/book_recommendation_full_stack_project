@@ -3,7 +3,7 @@ import { BookData } from "../interfaces/BookData";
 
 const retrieveBooks = async () => {
   try {
-    const response = await fetch('/api/Books', {
+    const response = await fetch('/api/books', {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -23,7 +23,7 @@ const retrieveBooks = async () => {
 
 const retrieveBook = async (id: number | null): Promise<BookData> => {
   try {
-    const response = await fetch(`/api/Books/${id}`, {
+    const response = await fetch(`/api/books/${id}`, {
       headers: {
         'Content-Type': 'application/json',
       }
@@ -43,7 +43,7 @@ const retrieveBook = async (id: number | null): Promise<BookData> => {
 const createBook = async (body: BookData): Promise<BookData> => {
   try {
     const response = await fetch(
-      '/api/Books/', {
+      '/api/books/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ const createBook = async (body: BookData): Promise<BookData> => {
 const updateBooks = async (id: number, body: BookData): Promise<BookData> => {
   try {
     const response = await fetch(
-      `/api/Books/${id}`, {
+      `/api/books/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ const updateBooks = async (id: number, body: BookData): Promise<BookData> => {
 const deleteBook = async (id: number): Promise<ApiMessage> => {
   try {
     const response = await fetch(
-      `/api/Books/${id}`, {
+      `/api/books/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -115,7 +115,7 @@ const deleteBook = async (id: number): Promise<ApiMessage> => {
 
 const searchBooks = async (search: string): Promise<BookData[]> => {
   try {
-    const response = await fetch(`/api/Books/search/${search}`, {
+    const response = await fetch(`/api/books/search/${search}`, {
       headers: {
         'Content-Type': 'application/json',
       }
