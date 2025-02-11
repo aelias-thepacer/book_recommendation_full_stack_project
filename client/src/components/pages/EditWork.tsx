@@ -1,15 +1,15 @@
 import { useState, useEffect, FormEvent, ChangeEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { WorkData } from "../interfaces/BookData";
+import { BookData } from "../interfaces/BookData";
 import { retrieveWork, updateWork } from "../api/workAPI";
 
 const EditWork = () => {
-  const [work, setWork] = useState<WorkData | undefined>();
+  const [work, setWork] = useState<BookData | undefined>();
 
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  const fetchWork = async (workId: WorkData) => {
+  const fetchWork = async (workId: BookData) => {
     try {
       const data = await retrieveWork(workId.id);
       setWork(data);
@@ -24,11 +24,11 @@ const EditWork = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (work && work.id !== null){
+    if (work && work.id !== null) {
       updateWork(work.id, work);
       navigate('/');
     }
-    else{
+    else {
       console.error('Ticket data is undefined.');
     }
   }
@@ -54,21 +54,21 @@ const EditWork = () => {
               <textarea
                 id='tName'
                 name='name'
-                value={work.name || ''}
+                value={work.title || ''}
                 onChange={handleTextAreaChange}
-                />
+              />
               <label htmlFor='tStatus'>Work Status</label>
               <select
                 name='status'
                 id='tStatus'
-                value={work.status || ''}
+                value={work.authors || ''}
                 onChange={handleChange}
               >
-                <option  value='Todo'>Todo</option>
-                <option  value='In Progress'>In Progress</option>
-                <option  value='Done'>Done</option>
-            </select>
-            <label htmlFor='tDescription'>Work Description</label>
+                <option value='Todo'>Todo</option>
+                <option value='In Progress'>In Progress</option>
+                <option value='Done'>Done</option>
+              </select>
+              <label htmlFor='tDescription'>Work Description</label>
               <textarea
                 id='tDescription'
                 name='description'
@@ -81,7 +81,7 @@ const EditWork = () => {
             <div>Issues fetching Work to Edit</div>
           )
         }
-      </div>  
+      </div>
     </>
   )
 };

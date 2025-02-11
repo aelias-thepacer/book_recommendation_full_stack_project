@@ -1,4 +1,4 @@
-import { WorkData } from "../interfaces/BookData";
+import { BookData } from "../interfaces/BookData";
 import { ApiMessage } from "../interfaces/ApiMessage";
 
 const retrieveWorks = async () => {
@@ -9,13 +9,13 @@ const retrieveWorks = async () => {
       }
     });
     const data = await response.json();
-    
-    if(!response.ok) {
+
+    if (!response.ok) {
       throw new Error('invalid work API response, check network tab!');
     }
 
     return data;
-  } catch(err) {
+  } catch (err) {
     console.log('Error from data retrieval:', err);
     return [];
   }
@@ -29,7 +29,7 @@ const retrieveWork = async (id: number | null) => {
       }
     });
     const data = await response.json();
-    if(!response.ok) {
+    if (!response.ok) {
       throw new Error('invalid volunteer API response, check network tab!');
     }
 
@@ -40,21 +40,21 @@ const retrieveWork = async (id: number | null) => {
   }
 };
 
-const createWork = async (body: WorkData):Promise<WorkData> => {
+const createWork = async (body: BookData): Promise<BookData> => {
   try {
     const response = await fetch(
       '/api/works/', {
-        method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        body: JSON.stringify(body)
-      }
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body)
+    }
 
     )
     const data = response.json();
 
-    if(!response.ok) {
+    if (!response.ok) {
       throw new Error('invalid API response, check network tab!');
     }
 
@@ -66,20 +66,20 @@ const createWork = async (body: WorkData):Promise<WorkData> => {
   }
 };
 
-const updateWork = async (id: number, body: WorkData ):Promise<WorkData> => {
+const updateWork = async (id: number, body: BookData): Promise<BookData> => {
   try {
     const response = await fetch(
       `/api/works/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body)
-      }
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body)
+    }
     )
     const data = await response.json();
 
-    if(!response.ok) {
+    if (!response.ok) {
       throw new Error('invalid API response, check network tab!');
     }
 
@@ -94,15 +94,15 @@ const deleteWork = async (workId: number | null): Promise<ApiMessage> => {
   try {
     const response = await fetch(
       `/api/works/${workId}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json'
-        }
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
       }
+    }
     )
     const data = await response.json();
 
-    if(!response.ok) {
+    if (!response.ok) {
       throw new Error('invalid API response, check network tab!');
     }
 
