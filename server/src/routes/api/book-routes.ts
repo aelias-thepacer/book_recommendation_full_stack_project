@@ -12,7 +12,7 @@ router.get('/search/:params', async (req: Request, res: Response) => {
   console.log(query);
 
   try {
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`)
+    fetch(`https://www.googleapis.com/books/v1/volumes?q="${query}"`)
       .then((res) => res.json())
       .then((data) => {
         res.status(200).json(data);

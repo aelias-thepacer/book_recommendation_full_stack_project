@@ -10,19 +10,19 @@ const BookPage = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [searchQuery, setSearchQuery] = useState<string>("");
 
-    useEffect(() => {
-        const fetchBooks = async () => {
-            try {
-                const books = await searchBooks("fiction");
-                setBooks(books);
-            } catch (error) {
-                console.error("Error fetching books:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
+    const fetchBooks = async (search: string) => {
+        try {
+            const books = await searchBooks(search);
+            setBooks(books);
+        } catch (error) {
+            console.error("Error fetching books:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-        fetchBooks();
+    useEffect(() => {
+        fetchBooks("lord of the rings");
     }, []);
 
     // Filter books based on the search query
@@ -43,6 +43,7 @@ const BookPage = () => {
                 placeholder="Search by title or author..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onSubmit={() => fetchBooks(searchQuery)}
                 className="search-bar"
             />
             <div className="book-list">

@@ -3,6 +3,7 @@ const forceDatabaseRefresh = false;
 import express from 'express';
 import sequelize from './config/connection.js';
 import routes from './routes/index.js';
+import {seedUsers} from './seeds/user-seeds.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -18,3 +19,6 @@ sequelize.sync({force: forceDatabaseRefresh}).then(() => {
     console.log(`Server is listening on port ${PORT}`);
   });
 });
+
+
+seedUsers();
