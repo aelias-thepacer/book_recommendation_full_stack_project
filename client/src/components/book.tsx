@@ -27,4 +27,4 @@ const Book = ({ id, title, authors, publishedDate, description, pageCount, matur
     )
 }
 
-// export default Book;
+export default Book;

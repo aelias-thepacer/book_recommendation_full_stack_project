@@ -1,36 +1,65 @@
-// import { PlacesData } from "../interfaces/PlacesData";
-// import { ApiMessage } from "../interfaces/ApiMessage";
+import { PlacesData } from "../interfaces/PlacesData";
 
-// const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=${type}&key=${AIzaSyAuw3y8Feor-ZLpY2zyY26jxhR_arjqXtA}`;
-// console.log("test");
-// fetch(url)
-//   .then(response => response.json())
-//   .then(data => console.log(JSON.stringify(data, null, 2)))
-//   .catch(error => console.error("Error fetching data:", error));
+// Function to fetch geocode (latitude and longitude) from an address
+const getGeocode = async (address: string): Promise<{ lat: number, lng: number }> => {
+  try {
+    const response = await fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`
+    );
 
-const lat = 37.7749; // Example latitude
-console.log(lat);
-const lng = -122.4194; // Example longitude
-console.log(lng);
-const radius = 1500; // Example radius in meters
-const type = 'restaurant'; // Example place type
-const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY; // Use environment variable for API key
+    if (!response.ok) {
+      throw new Error('Geocode API error');
+    }
 
+    const data = await response.json();
+    
+    if (data.status !== 'OK') {
+      throw new Error('Geocode API did not return valid data');
+    }
 
-if (!apiKey) {
-    console.error("API key is missing. Please set REACT_APP_GOOGLE_MAPS_API_KEY in your .env file.");
-  } else {
-    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=${type}&key=${apiKey}`;
-    console.log("URL:", url); // Log the URL to ensure it's correct
-    fetch(url)
-      .then(response => {
-        console.log("Response status:", response.status); // Log the response status
-        return response.json();
-      })
-      .then(data => {
-        console.log("Data received:", JSON.stringify(data, null, 2)); // Log the received data
-      })
-      .catch(error => {
-        console.error("Error fetching data:", error); // Log any errors
-      });
+    return data.results[0]?.geometry.location;  // Returns { lat, lng }
+  } catch (err) {
+    console.error("Error in geocoding:", err);
+    throw err;  // Propagate error
   }
+};
+
+// Define the structure of the response from the places API for better type safety
+interface PlacesAPIResponse {
+  status: string;
+  results: any[];  // You may want to create an interface for the items in results if needed
+}
+
+// Function to fetch nearby libraries using latitude and longitude
+const getNearbyLibraries = async (lat: number, lng: number): Promise<PlacesData[]> => {
+  try {
+    const response = await fetch(`/places/find-libraries?latitude=${lat}&longitude=${lng}`);
+    
+    if (!response.ok) {
+      throw new Error('Error fetching libraries');
+    }
+
+    const data: PlacesAPIResponse = await response.json();
+
+    if (data.status !== 'OK') {
+      throw new Error('Error in library API response');
+    }
+
+    // Map the API response to match the PlacesData structure
+    const libraries: PlacesData[] = data.results.map((place: any) => ({
+      place_id: place.place_id,
+      name: place.name,
+      vicinity: place.vicinity,
+      lat: place.geometry.location.lat,
+      lng: place.geometry.location.lng,
+      type: 'library',
+    }));
+
+    return libraries;  // List of nearby libraries
+  } catch (err) {
+    console.error("Error fetching libraries:", err);
+    throw err;  // Propagate error
+  }
+};
+
+export { getGeocode, getNearbyLibraries };
