@@ -6,9 +6,9 @@ import { BookData } from '../../interfaces/BookData';
 
 
 const BookPage = () => {
-    //? ==> DUMMY DATA WHGILE FIXING THE API/BACK-END
     const [books, setBooks] = useState<BookData[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const [searchQuery, setSearchQuery] = useState<string>("");
 
     useEffect(() => {
         const fetchBooks = async () => {
@@ -25,6 +25,12 @@ const BookPage = () => {
         fetchBooks();
     }, []);
 
+    // Filter books based on the search query
+    const filteredBooks = books.filter(book =>
+        (book.title?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false) ||
+        book.authors?.some(author => author.toLowerCase().includes(searchQuery.toLowerCase()))
+    );
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -32,25 +38,31 @@ const BookPage = () => {
     return (
         // Main Page Fetching ID, Title, Authors, Description, Image, and Buttons for Edit and Delete
         <section className='section'>
+            <input
+                type="text"
+                placeholder="Search by title or author..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="search-bar"
+            />
             <div className="book-list">
-                {
-                    books.map((book) => (
+                {filteredBooks.length > 0 ? (
+                    filteredBooks.map((book) => (
                         <Link
                             to={`/books/${book.id}`}
                             key={book.id}
                             state={{ book }}
                             className="book-card"
                         >
-
-                            <img src={book.thumbnail ?? book.title ?? ""} />
+                            <img src={book.thumbnail ?? ""} alt={`image of ${book.title}`} />
                             <h3>Title: {book.title}</h3>
-                            <h4>By {book.authors}</h4>
-                            <p>Summary: {book.description}</p>
-
-
+                            <h4>By {book.authors?.join(", ") ?? "Unknown Author"}</h4>
+                            <p>Summary: {book.description || "No description available"}</p>
                         </Link>
                     ))
-                }
+                ) : (
+                    <div>No books found</div>
+                )}
             </div>
         </section>
     )
