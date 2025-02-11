@@ -1,4 +1,4 @@
-import React from 'react';
+//import React from 'react';
 import '../../assets/css/SingleBook.css'
 import { useLocation } from 'react-router-dom'
 //storing each book in a single book component
