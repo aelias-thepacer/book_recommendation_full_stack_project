@@ -17,6 +17,7 @@ const Book = ({ id, title, authors, publishedDate, description, pageCount, matur
             <h1>{title}</h1>
             <p>by {authors.join(', ')}</p>
             <p>Published: {publishedDate}</p>
+            <p>Book ID: {id}</p>
             <p> {description}</p>
             <p>Pages: {pageCount}</p>
             <p>Language: {language}</p>

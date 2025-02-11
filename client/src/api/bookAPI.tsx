@@ -10,7 +10,7 @@ const retrieveBooks = async () => {
     });
     const data = await response.json();
 
-    if(!response.ok) {
+    if (!response.ok) {
       throw new Error('invalid Book API response, check network tab!');
     }
 
@@ -18,7 +18,7 @@ const retrieveBooks = async () => {
   } catch (err) {
     console.log('Error from data retrieval:', err);
     return [];
-  }  
+  }
 };
 
 const retrieveBook = async (id: number | null): Promise<BookData> => {
@@ -29,7 +29,7 @@ const retrieveBook = async (id: number | null): Promise<BookData> => {
       }
     });
     const data = await response.json();
-    if(!response.ok) {
+    if (!response.ok) {
       throw new Error('invalid Book API response, check network tab!');
     }
 
@@ -44,17 +44,17 @@ const createBook = async (body: BookData): Promise<BookData> => {
   try {
     const response = await fetch(
       '/api/Books/', {
-        method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        body: JSON.stringify(body)
-      }
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body)
+    }
 
     )
     const data = response.json();
 
-    if(!response.ok) {
+    if (!response.ok) {
       throw new Error('invalid API response, check network tab!');
     }
 
@@ -70,16 +70,16 @@ const updateBooks = async (id: number, body: BookData): Promise<BookData> => {
   try {
     const response = await fetch(
       `/api/Books/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body)
-      }
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body)
+    }
     )
     const data = await response.json();
 
-    if(!response.ok) {
+    if (!response.ok) {
       throw new Error('invalid API response, check network tab!');
     }
 
@@ -94,15 +94,15 @@ const deleteBook = async (id: number): Promise<ApiMessage> => {
   try {
     const response = await fetch(
       `/api/Books/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        }
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
       }
+    }
     )
     const data = await response.json();
 
-    if(!response.ok) {
+    if (!response.ok) {
       throw new Error('invalid API response, check network tab!');
     }
 
@@ -121,7 +121,7 @@ const searchBooks = async (search: string): Promise<BookData[]> => {
       }
     });
     const data = await response.json();
-    if(!response.ok) {
+    if (!response.ok) {
       throw new Error('invalid Book API response, check network tab!');
     }
     return data.items;
@@ -130,5 +130,6 @@ const searchBooks = async (search: string): Promise<BookData[]> => {
     return [];
   }
 }
+
 
 export { retrieveBook, retrieveBooks, createBook, updateBooks, deleteBook, searchBooks };

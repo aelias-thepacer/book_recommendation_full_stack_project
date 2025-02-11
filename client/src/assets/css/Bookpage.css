@@ -1,0 +1,60 @@
+/* Book Page Container */
+.book-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px;
+    min-height: 100vh;
+}
+
+/* Each Book Card */
+.book-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 12px;
+    width: 300px;
+    min-height: 400px;
+    max-height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Book Image */
+.book-card img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Book Title */
+.book-card h3 {
+    font-size: 20px;
+    color: #4e7a67;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Author Name */
+.book-card h4 {
+    font-size: 16px;
+    color: grey;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* Description */
+.book-card p {
+    font-size: 14px;
+    color: grey;
+    margin-top: 10px;
+    padding: 0 10px;
+}

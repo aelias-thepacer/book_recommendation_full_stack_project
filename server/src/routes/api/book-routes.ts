@@ -6,18 +6,18 @@ const router = express.Router();
 
 // GET searched books from Google Books API
 router.get('/search/:params', async (req: Request, res: Response) => {
-  
+
   const query = req.params.params;
 
   console.log(query);
 
   try {
     fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`)
-    .then((res) => res.json())
-    .then((data) => {
-      res.status(200).json(data);
-      return data.items;
-    });
+      .then((res) => res.json())
+      .then((data) => {
+        res.status(200).json(data);
+        return data.items;
+      });
   } catch (error: any) {
     res.status(500).json({
       message: error.message
@@ -42,7 +42,7 @@ router.get('/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
     const book = await Book.findByPk(id);
-    if(book) {
+    if (book) {
       res.json(book);
     } else {
       res.status(404).json({
@@ -115,7 +115,7 @@ router.delete('/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
     const book = await Book.findByPk(id);
-    if(book) {
+    if (book) {
       await book.destroy();
       res.json({ message: 'Book deleted' });
     } else {
