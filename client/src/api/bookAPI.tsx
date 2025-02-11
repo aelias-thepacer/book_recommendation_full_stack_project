@@ -1,37 +1,37 @@
 // import { ApiMessage } from "../interfaces/ApiMessage";
 // import { BookData } from "../interfaces/BookData";
 
-// const retrieveBooks = async () => {
-//   try {
-//     const response = await fetch('/api/Books', {
-//       headers: {
-//         'Content-Type': 'application/json'
-//       }
-//     });
-//     const data = await response.json();
+const retrieveBooks = async () => {
+  try {
+    const response = await fetch('/api/books', {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
 
-//     if(!response.ok) {
-//       throw new Error('invalid Book API response, check network tab!');
-//     }
+    if (!response.ok) {
+      throw new Error('invalid Book API response, check network tab!');
+    }
 
-//     return data;
-//   } catch (err) {
-//     console.log('Error from data retrieval:', err);
-//     return [];
-//   }  
-// };
+    return data;
+  } catch (err) {
+    console.log('Error from data retrieval:', err);
+    return [];
+  }
+};
 
-// const retrieveBook = async (id: number | null): Promise<BookData> => {
-//   try {
-//     const response = await fetch(`/api/Books/${id}`, {
-//       headers: {
-//         'Content-Type': 'application/json',
-//       }
-//     });
-//     const data = await response.json();
-//     if(!response.ok) {
-//       throw new Error('invalid Book API response, check network tab!');
-//     }
+const retrieveBook = async (id: number | null): Promise<BookData> => {
+  try {
+    const response = await fetch(`/api/books/${id}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error('invalid Book API response, check network tab!');
+    }
 
 //     return data;
 //   } catch (err) {
@@ -40,23 +40,23 @@
 //   }
 // };
 
-// const createBook = async (body: BookData): Promise<BookData> => {
-//   try {
-//     const response = await fetch(
-//       '/api/Books/', {
-//         method: 'POST',
-//           headers: {
-//             'Content-Type': 'application/json',
-//           },
-//         body: JSON.stringify(body)
-//       }
+const createBook = async (body: BookData): Promise<BookData> => {
+  try {
+    const response = await fetch(
+      '/api/books/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body)
+    }
 
 //     )
 //     const data = response.json();
 
-//     if(!response.ok) {
-//       throw new Error('invalid API response, check network tab!');
-//     }
+    if (!response.ok) {
+      throw new Error('invalid API response, check network tab!');
+    }
 
 //     return data;
 
@@ -66,22 +66,22 @@
 //   }
 // };
 
-// const updateBooks = async (id: number, body: BookData): Promise<BookData> => {
-//   try {
-//     const response = await fetch(
-//       `/api/Books/${id}`, {
-//         method: 'PUT',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(body)
-//       }
-//     )
-//     const data = await response.json();
+const updateBooks = async (id: number, body: BookData): Promise<BookData> => {
+  try {
+    const response = await fetch(
+      `/api/books/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body)
+    }
+    )
+    const data = await response.json();
 
-//     if(!response.ok) {
-//       throw new Error('invalid API response, check network tab!');
-//     }
+    if (!response.ok) {
+      throw new Error('invalid API response, check network tab!');
+    }
 
 //     return data;
 //   } catch (err) {
@@ -90,21 +90,21 @@
 //   }
 // };
 
-// const deleteBook = async (id: number): Promise<ApiMessage> => {
-//   try {
-//     const response = await fetch(
-//       `/api/Books/${id}`, {
-//         method: 'DELETE',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         }
-//       }
-//     )
-//     const data = await response.json();
+const deleteBook = async (id: number): Promise<ApiMessage> => {
+  try {
+    const response = await fetch(
+      `/api/books/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }
+    )
+    const data = await response.json();
 
-//     if(!response.ok) {
-//       throw new Error('invalid API response, check network tab!');
-//     }
+    if (!response.ok) {
+      throw new Error('invalid API response, check network tab!');
+    }
 
 //     return data;
 //   } catch (err) {
@@ -113,22 +113,23 @@
 //   }
 // };
 
-// const searchBooks = async (search: string): Promise<BookData[]> => {
-//   try {
-//     const response = await fetch(`/api/Books/search/${search}`, {
-//       headers: {
-//         'Content-Type': 'application/json',
-//       }
-//     });
-//     const data = await response.json();
-//     if(!response.ok) {
-//       throw new Error('invalid Book API response, check network tab!');
-//     }
-//     return data.items;
-//   } catch (err) {
-//     console.log('Error from data retrieval:', err);
-//     return [];
-//   }
-// }
+const searchBooks = async (search: string): Promise<BookData[]> => {
+  try {
+    const response = await fetch(`/api/books/search/${search}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error('invalid Book API response, check network tab!');
+    }
+    return data.items;
+  } catch (err) {
+    console.log('Error from data retrieval:', err);
+    return [];
+  }
+}
+
 
 // export { retrieveBook, retrieveBooks, createBook, updateBooks, deleteBook, searchBooks };
