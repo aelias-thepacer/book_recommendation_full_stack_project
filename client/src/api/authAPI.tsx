@@ -9,7 +9,6 @@ const login = async (userInfo: UserLogin) => {
       },
       body: JSON.stringify(userInfo),
     });
-
     const data = await response.json();
 
     if (!response.ok) {

@@ -4,10 +4,13 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
 export const login = async (req: Request, res: Response) => {
+  console.log('login route hit');
+  console.log(req.body);
   const { username, password } = req.body;
 
   const user = await User.findOne({
     where: { username },
+    order: [['createdAt', 'DESC']],
   });
   if (!user) {
     return res.status(401).json({ message: 'Authentication failed' });
