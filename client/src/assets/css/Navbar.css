@@ -1,6 +1,6 @@
 .nav {
     background: linear-gradient(135deg, #cfdfdc, #0a4029);
-    padding: 15px 30px;
+    padding: 5px 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,9 +15,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 90%;
+    width: 100%;
     max-width: 1200px;
-
 }
 
 .logo a {

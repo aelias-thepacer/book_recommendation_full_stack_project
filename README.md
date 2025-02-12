@@ -2,7 +2,7 @@
 
 ## Description
 
-A web application that allows users to search for books using a book data retrieval API, recommend their favorite books, and view reviews from other users. Additionally, the application helps users locate nearby libraries using a second API. Built with **Node.js** and **Express.js** for the backend, **React** for the frontend, and **PostgreSQL** with **Sequelize ORM** for data management, the app ensures a seamless user experience. It includes user authentication via **JWT** and secures API keys and sensitive information using **environment variables**.
+A web application that allows users to search for books using a book data retrieval API, recommend books, and locate nearby libraries using a second API. Built with **Node.js** and **Express.js** for the backend, **React** for the frontend, and **PostgreSQL** with **Sequelize ORM** for data management, the app ensures a seamless user experience. It includes user authentication via **JWT** and secures API keys and sensitive information using **environment variables**.
 
 ## Features
 - Search for books using an external book data API.
@@ -14,7 +14,6 @@ A web application that allows users to search for books using a book data retrie
 - Supports **GET** requests for retrieving books and library data.
 - Supports **POST** requests for adding user book recommendations.
 
-## Tech Stack
 ### Frontend
 - React.js
 - React Router
@@ -80,8 +79,13 @@ Ensure you have the following installed:
 ## License
 MIT License. See `LICENSE` file for more details.
 
-## Contributions
-Eli Pace
-Karina Garcia
-Leo Jones
-Tristin Tsun
+## Contributions and Contacts
+
+### Karina Garcia
+- GitHub: https://github.com/karinuhgarcia
+### Leo Jones
+- GitHub: https://github.com/Finnmos1
+### Eli Pace
+- GitHub: https://github.com/aelias-thepacer
+### Tristin Tsun
+- GitHub: https://github.com/Tsunwei514

@@ -115,16 +115,35 @@ const deleteBook = async (id: number): Promise<ApiMessage> => {
 
 const searchBooks = async (search: string): Promise<BookData[]> => {
   try {
+    console.log(search);
     const response = await fetch(`/api/books/search/${search}`, {
       headers: {
         'Content-Type': 'application/json',
       }
     });
     const data = await response.json();
+    console.log(data);
     if (!response.ok) {
       throw new Error('invalid Book API response, check network tab!');
     }
-    return data.items;
+    const books = [];
+    for (let i = 0; i < data.items.length; i++) {
+      const book = data.items[i];
+      const bookData: BookData = {
+        id: i,
+        title: book.volumeInfo.title,
+        authors: book.volumeInfo.authors,
+        description: book.volumeInfo.description,
+        thumbnail: book.volumeInfo.imageLinks?.thumbnail,
+        pageCount: book.volumeInfo.pageCount,
+        publishedDate: book.volumeInfo.publishedDate,
+        maturityRating: book.volumeInfo.averageRating,
+      };
+      books.push(bookData);
+    }
+
+
+    return books;
   } catch (err) {
     console.log('Error from data retrieval:', err);
     return [];
