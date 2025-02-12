@@ -11,9 +11,13 @@ const BookPage = () => {
     const [searchQuery, setSearchQuery] = useState<string>("");
 
     const fetchBooks = async (search: string) => {
+        setLoading(true);
         try {
             const books = await searchBooks(search);
+            console.log(books);
+            console.log('howdy');
             setBooks(books);
+
         } catch (error) {
             console.error("Error fetching books:", error);
         } finally {
@@ -38,17 +42,16 @@ const BookPage = () => {
     return (
         // Main Page Fetching ID, Title, Authors, Description, Image, and Buttons for Edit and Delete
         <section className='section'>
-            <input
+            <form onSubmit={() => fetchBooks(searchQuery)}><input
                 type="text"
                 placeholder="Search by title or author..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                onSubmit={() => fetchBooks(searchQuery)}
                 className="search-bar"
-            />
+            /></form>
             <div className="book-list">
-                {filteredBooks.length > 0 ? (
-                    filteredBooks.map((book) => (
+                {books.length > 0 ? (
+                    books.map((book) => (
                         <Link
                             to={`/books/${book.id}`}
                             key={book.id}

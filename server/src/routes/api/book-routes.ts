@@ -6,57 +6,57 @@ const router = express.Router();
 
 // GET searched books from Google Books API
 router.get('/search/:params', async (req: Request, res: Response) => {
-
+  console.log("searching books");
   const query = req.params.params;
 
   console.log(query);
 
+  const Api = `https://www.googleapis.com/books/v1/volumes?q="${query}"&key=${process.env.GOOGLE_BOOKS_API_KEY}`
   try {
-    fetch(`https://www.googleapis.com/books/v1/volumes?q="${query}"`)
-      .then((res) => res.json())
-      .then((data) => {
-        res.status(200).json(data);
-        return data.items;
-      });
+    console.log(Api);
+    const response = await fetch(Api);
+    const data = await response.json();
+    return res.status(200).json(data);
   } catch (error: any) {
-    res.status(500).json({
+    return res.status(500).json({
       message: error.message
     });
   }
 });
+
 
 // GET /books - Get all books
 router.get('/', async (_req: Request, res: Response) => {
   try {
     const books = await Book.findAll();
-    res.json(books);
+    return res.json(books);
   } catch (error: any) {
-    res.status(500).json({
+    return res.status(500).json({
       message: error.message
     });
   }
 });
 
-// GET /books/:id - Get a volunteer by ID
+// GET /books/:id - Get a book by ID
 router.get('/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
     const book = await Book.findByPk(id);
     if (book) {
-      res.json(book);
+      return res.json(book);
     } else {
-      res.status(404).json({
+      return res.status(404).json({
         message: 'Book not found'
       });
     }
   } catch (error: any) {
-    res.status(500).json({
+    return res.status(500).json({
       message: error.message
     });
   }
 });
 
-// POST /books - Create a new volunteer
+// POST /books - Create a new book
 router.post('/', async (req: Request, res: Response) => {
   const { title } = req.body.bookTitle;
   const { authors } = req.body.bookAuthors;
@@ -79,9 +79,9 @@ router.post('/', async (req: Request, res: Response) => {
       language,
       bookLink
     });
-    res.status(201).json(newBook);
+    return res.status(201).json(newBook);
   } catch (error: any) {
-    res.status(400).json({
+    return res.status(400).json({
       message: error.message
     });
   }
@@ -117,14 +117,14 @@ router.delete('/:id', async (req: Request, res: Response) => {
     const book = await Book.findByPk(id);
     if (book) {
       await book.destroy();
-      res.json({ message: 'Book deleted' });
+      return res.json({ message: 'Book deleted' });
     } else {
-      res.status(404).json({
+      return res.status(404).json({
         message: 'Book not found'
       });
     }
   } catch (error: any) {
-    res.status(500).json({
+    return res.status(500).json({
       message: error.message
     });
   }
