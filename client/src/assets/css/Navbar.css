@@ -1,11 +1,12 @@
 .nav {
     background: linear-gradient(135deg, #cfdfdc, #0a4029);
-    padding: 5px 5px;
+    padding: 15px 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0 4px 6px #0000001a;
-    position: sticky;
+    position: fixed;
+    ;
     top: 0;
     width: 100%;
     z-index: 1000;
@@ -15,12 +16,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 90%;
     max-width: 1200px;
+
 }
 
 .logo a {
-    font-size: 50px;
+    font-size: 24px;
     font-weight: bold;
     color: #fff;
     text-decoration: none;
@@ -54,7 +56,7 @@
 .nav-links a {
     color: #fff;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 18px;
     font-weight: 500px;
     /* transition : ; */
 }

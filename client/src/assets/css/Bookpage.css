@@ -6,7 +6,24 @@
     gap: 20px;
     padding: 40px;
     min-height: 80vh;
+    padding-top: 80px;
 }
+
+/*Search Form*/
+.search-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    background: #fff;
+    border: 2px solid #ccc;
+    border-radius: 25px;
+    padding: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 
 /* Each Book Card */
 .book-card {
