@@ -17,6 +17,7 @@ const LibrariesPage = () => {
 
         try {
             const data = await fetchLibraries(address);
+            console.log(data);
             setLibraries(data);
         } catch (error) {
             setError('Failed to fetch libraries');
@@ -46,8 +47,8 @@ const LibrariesPage = () => {
                     libraries.map((library: any, index) => (
                         <div key={index}>
                             <h2>{library.name}</h2>
-                            <p>{library.formatted_address}</p>
-                            <a href={`https://www.google.com/maps?q=${library.geometry.location.lat},${library.geometry.location.lng}`} target="_blank" rel="noopener noreferrer">View on Google Maps</a>
+                            <p>{library.address}</p>
+                            <a href={`https://www.google.com/maps?q=${library.lat},${library.lng}`} target="_blank" rel="noopener noreferrer">View on Google Maps</a>
                         </div>
                     ))
                 ) : (

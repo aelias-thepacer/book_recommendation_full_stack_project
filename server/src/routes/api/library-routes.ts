@@ -6,7 +6,8 @@ dotenv.config();
 
 const router = express.Router();
 
-router.get('/libraries', async (req: Request, res: Response) => {
+
+router.get('/', async (req: Request, res: Response) => {
     const address = req.query.address as string;
 
     if (!address) {
