@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { fetchLibraries } from '../../api/libraryAPI';
 import { LibraryData } from '../../interfaces/LibraryData';
+import '../../assets/css/LibraryPage.css';
 
 const LibrariesPage = () => {
     const [address, setAddress] = useState<string>('');
@@ -17,6 +18,7 @@ const LibrariesPage = () => {
 
         try {
             const data = await fetchLibraries(address);
+            console.log(data);
             setLibraries(data);
         } catch (error) {
             setError('Failed to fetch libraries');
@@ -26,7 +28,7 @@ const LibrariesPage = () => {
     };
 
     return (
-        <div>
+        <div className="libraries-container">
             <h1>Find Nearby Libraries</h1>
             <form onSubmit={handleSearch}>
                 <input
@@ -41,13 +43,13 @@ const LibrariesPage = () => {
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
 
-            <div>
+            <div className="libraries-list">
                 {libraries.length > 0 ? (
                     libraries.map((library: any, index) => (
-                        <div key={index}>
+                        <div key={index} className="library-card">
                             <h2>{library.name}</h2>
-                            <p>{library.formatted_address}</p>
-                            <a href={`https://www.google.com/maps?q=${library.geometry.location.lat},${library.geometry.location.lng}`} target="_blank" rel="noopener noreferrer">View on Google Maps</a>
+                            <p>{library.address}</p>
+                            <a href={`https://www.google.com/maps?q=${library.lat},${library.lng}`} target="_blank" rel="noopener noreferrer">View on Google Maps</a>
                         </div>
                     ))
                 ) : (
