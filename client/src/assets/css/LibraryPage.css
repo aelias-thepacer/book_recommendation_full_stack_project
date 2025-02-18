@@ -1,0 +1,94 @@
+/* Libraries Page Container */
+.libraries-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Search Form */
+.libraries-container form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.libraries-container input {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #4e7a67;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.libraries-container input:focus {
+    border-color: #8a5a44;
+}
+
+/* Search Button */
+.libraries-container button {
+    background-color: #4e7a67;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.libraries-container button:hover {
+    background-color: #8a5a44;
+}
+
+/* Libraries List */
+.libraries-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+/* Each Library Card */
+.library-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 16px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.library-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Library Name */
+.library-card h2 {
+    font-size: 20px;
+    color: #4e7a67;
+    margin-bottom: 10px;
+}
+
+/* Address */
+.library-card p {
+    font-size: 14px;
+    color: grey;
+}
+
+/* Google Maps Link */
+.library-card a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #d4a373;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.library-card a:hover {
+    text-decoration: underline;
+}

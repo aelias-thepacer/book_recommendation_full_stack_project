@@ -30,11 +30,12 @@ const BookPage = () => {
     }, []);
 
     // Filter books based on the search query
-    // const filteredBooks = books.filter(book =>
-    //     (book.title?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false) ||
-    //     book.authors?.some(author => author.toLowerCase().includes(searchQuery.toLowerCase()))
-    // );
-
+    /*
+    const filteredBooks = books.filter(book =>
+        (book.title?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false) ||
+        book.authors?.some(author => author.toLowerCase().includes(searchQuery.toLowerCase()))
+    );
+    */
     if (loading) {
         return <div>Loading...</div>;
     }
